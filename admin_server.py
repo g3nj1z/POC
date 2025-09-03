@@ -40,7 +40,7 @@ class H(http.server.BaseHTTPRequestHandler):
             return
 
         if path == "/redir":
-            variant = (qs.get("variant") or ["zpad"])[0]
+            variant = (qs.get("variant") or ["zpad"])[0].split('/', 1)[0]
             alias = alias_for(variant)
             loc = f"http://{alias}:{PORT}/admin/do"
             self.send_response(302)
